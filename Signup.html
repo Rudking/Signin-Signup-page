@@ -32,7 +32,7 @@
                 }
             },
             messages: {
-                uname:"must contain only characters",
+               
                 cpassword: " Enter Confirm Password Same as Password"
 
 
@@ -69,6 +69,29 @@
             }).blur(function() {
             $('#pswd_info').hide();
             });
+
+            $("#name").keyup(function(){
+                var n=$(this).val();
+                if(n.match(/[A-z]/)){
+                    $("#format").removeClass("invalid").addClass("valid");
+                }  else {
+                    $("#format").removeClass("valid").addClass("invaid");
+                }
+                if(n.match(/\d/)){
+                    $("#format").removeClass("valid").addClass("invalid");
+                } else {
+                    $("#format").removeClass("invalid").addClass("valid");
+                }
+                 if(n.match(/\W/)){
+                    $("#format").removeClass("valid").addClass("invalid");
+                }
+                
+            }).focus(function(){
+                $("#name-info").show();
+            }).blur(function(){
+                $("#name-info").hide();
+            });
+
         
   
             $("#check").change(function(){
@@ -94,6 +117,9 @@
               <form class="register-form"  action="#" method="post" id="signup" >
           
                  <input type="text" placeholder="name" name="uname" id="name" onfocus=""/> 
+                 <div id="name-info">
+                     <i id="format" class="invalid">name must contain only characters</span>
+                 </div>
            
                  <input type="email" placeholder="email address" name="email" id="email" />
           
@@ -120,25 +146,6 @@
                </form>
             </div>
          
-              
-    <script>
-        function Showpassword()
-        {
-            var pass=document.getElementById("password");
-            if(pass.type="password")
-            {
-                pass.type="text";
-            }
-            else
-            {
-                pass.type="password";
-            }
-        }
-        var c=document.getElementById("check");
-        c.addEventListener("click",Showpassword);
-    </script>
-       
-
 
     </body>
     
